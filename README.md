@@ -10,9 +10,9 @@ AddMetadata : add metadata
 
 Concat : concat serveral pdf files 
 
-Copy : copy a pdf file
-Create : create a pdf file
-CropMargin : crop the pdf
+Copy : copy a pdf file  
+Create : create a pdf file  
+CropMargin : crop the pdf  
 CropMark : add crop mark
 Decrypt : decrypt the pdf 
 DuplicatePage : duplicate pages of the PDF
