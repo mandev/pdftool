@@ -1,6 +1,6 @@
 # PdfTool
 
-PdfTool offers many filters to operate on PDF files.     
+PdfTool offers filters to operate on PDF files.
 
 ## Filters
 
@@ -93,6 +93,38 @@ Impose impose = new Impose(TEST_RESULTS + "plate_{TEMP}.pdf", (20 + 216) * 2 * M
 
         File file1 = new File(TEST_RESOURCES + "julesverne.pdf");
         pdfTool.execute(file1);
+```
+
+## XML 
+
+The filters can be exported to an XML file. It's also possible to import an XML that contains the filters and to execute the operations. 
+
+* XML sample :
+
+```
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PdfTool>
+  <GroupFilter deleteSource="false" count="0">
+    <InsertPage deleteSource="false" destination="/tmp/pdftool/page_{TEMP}.tmp" pageCount="1" insertBefore="1"/>
+    <DuplicatePage deleteSource="false" destination="/tmp/pdftool/plate_{TEMP}.tmp" count="5" pattern="2-"/>
+    <Multiply deleteSource="false" count="2"/>
+    <Impose deleteSource="true" destination="/tmp/pdftool/plate_{TEMP}.pdf" width="472.0 mm" height="315.0 mm" type="2">
+      <PageSlot x="10.0 mm" y="10.0 mm" folio="true" folioX="110.0 mm" folioY="309.0 mm" folioText="{FILENAME} - Page {FOLIO}" folioSize="10"/>
+      <PageSlot x="246.0 mm" y="10.0 mm" folio="true" folioX="330.0 mm" folioY="309.0 mm" folioText="Page {FOLIO}" folioSize="10"/>
+      <PageMark x="3.0 mm" y="3.0 mm" size="5.0 mm" offset="5.0 mm" position="++||" thickness="0.35 mm">
+        <color value="-16777216"/>
+      </PageMark>
+      <PageMark x="3.0 mm" y="3.0 mm" size="5.0 mm" offset="5.0 mm" position="||++" thickness="0.35 mm">
+        <color reference="../../PageMark/color"/>
+      </PageMark>
+    </Impose>
+  </GroupFilter>
+  <GroupFilter deleteSource="false" count="3">
+    <RemovePage deleteSource="false" destination="/tmp/pdftool/page_{TEMP}.tmp" pattern="1"/>
+    <Multiply deleteSource="false" count="2"/>
+    <Impose reference="../../GroupFilter/Impose"/>
+  </GroupFilter>
+</PdfTool>
 ```
 
 ## Licensing
