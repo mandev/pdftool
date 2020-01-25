@@ -4,53 +4,50 @@ PdfTool offers many filters to retrieve information and operate on PD files.
 
 # Filters
 
-AddMargin : add a margin
-
-AddMetadata : add metadata 
-
-Concat : concat serveral pdf files 
-
-Copy : copy a pdf file  
-Create : create a pdf file  
-CropMargin : crop the pdf  
-CropMark : add crop mark
-Decrypt : decrypt the pdf 
-DuplicatePage : duplicate pages of the PDF
-Encrypt : encrypt the PDF
-Impose : impose the PDF with various strategies
-InsertPage : insert a page 
-Merge : merge two PDF into another
-PaddingPage : add a padding on a page
-Render : draw a renderable object (rectangle,line, marks, image, etc.)
-RemovePage : remove a page from the PDF
-Rename : rename the PDF
-Resize : resize (width, height) the PDF 
-ReversePage : reverse the pages in the PDF
-SplitDocument : split the PDF document
-SplitPage : spit each page of the PDF document
-Transform : transform with a 2d trsnformation
+* AddMargin : add a margin
+* AddMetadata : add metadata 
+* Concat : concat serveral pdf files 
+* Copy : copy a pdf file  
+* Create : create a pdf file  
+* CropMargin : crop the pdf  
+* CropMark : add crop mark
+* Decrypt : decrypt the pdf 
+* DuplicatePage : duplicate pages of the PDF
+* Encrypt : encrypt the PDF
+* Impose : impose the PDF with various strategies
+* InsertPage : insert a page 
+* Merge : merge two PDF into another
+* PaddingPage : add a padding on a page
+* Render : draw a renderable object (rectangle,line, marks, image, etc.)
+* RemovePage : remove a page from the PDF
+* Rename : rename the PDF
+* Resize : resize (width, height) the PDF 
+* ReversePage : reverse the pages in the PDF
+* SplitDocument : split the PDF document
+* SplitPage : spit each page of the PDF document
+* Transform : transform with a 2d trsnformation
 
 # Render objects
 
-BarCode : draw a barcode
-Image : insert an image
-Line : a line
-PageMark : a page mark
-Rectangle : a rectangle
-Template : a PDF file 
-Text : some text
-WaterMark.java : a watermark
+* BarCode : draw a barcode
+* Image : insert an image
+* Line : a line
+* PageMark : a page mark
+* Rectangle : a rectangle
+* Template : a PDF file 
+* Text : some text
+* WaterMark.java : a watermark
 
 # Flow filter operators
 
-GroupFilter.java : flow operator to group filters
-Multiply.java : multiply the PDF flow (useful for impose filter)
-SelectPage.java : a page selector to operate on specific pages
+* GroupFilter.java : flow operator to group filters
+* Multiply.java : multiply the PDF flow (useful for impose filter)
+* SelectPage.java : a page selector to operate on specific pages
 
 # Top level objects
 
-PdfTool : add and execute PDF filers  
-PdfExtractor:  extract information from the PDF
+* PdfTool : add and execute PDF filers  
+* PdfExtractor:  extract information from the PDF
 
 # Code sample 
 
