@@ -72,8 +72,8 @@ public class PdfToolTest {
         File ouputfile = new File(TEST_RESULTS + "testCreate.pdf");
 
         RenderFilter rf = new RenderFilter("10");
-        rf.addRender(new Text("Essai1", 8 * MMf, -5 * MMf - 12f));
-        rf.addRender(new Text("Essai2", 8 * MMf, -5 * MMf - 12 * 2f));
+        rf.addRender(new Text("Hello", 8 * MMf, -5 * MMf - 12f));
+        rf.addRender(new Text("World", 8 * MMf, -5 * MMf - 12 * 2f));
         rf.addRender(new Rectangle(5 * MMf, 5 * MMf, -5 * MMf, -5 * MMf));
         rf.addRender(new BarCode("14567890111", 78 * MMf, 10 * MMf, 1f, 1f, 90, BarCode.ALIGN_CENTER));
         rf.addRender(new Image(TEST_RESOURCES + "image.jpg", 10 * MMf, 10 * MMf, 0, 0, 1, BaseColor.CYAN));
