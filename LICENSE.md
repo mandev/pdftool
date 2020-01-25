@@ -1,6 +1,3 @@
-This program is offered under a commercial and under the AGPL license.
-For commercial licensing, contact us at https://itextpdf.com/sales.  For AGPL licensing, see below.
-
 AGPL licensing:
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
