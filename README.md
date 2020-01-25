@@ -1,12 +1,15 @@
-# pdftool
+## pdftool
 
 PdfTool offers many filters to retrieve information and operate on PD files.    
 
 # Filters
 
 AddMargin : add a margin
+
 AddMetadata : add metadata 
+
 Concat : concat serveral pdf files 
+
 Copy : copy a pdf file
 Create : create a pdf file
 CropMargin : crop the pdf
