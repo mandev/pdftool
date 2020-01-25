@@ -1,6 +1,6 @@
 # PdfTool
 
-PdfTool offers many filters operate on PDF files.     
+PdfTool offers many filters to operate on PDF files.     
 
 ## Filters
 
