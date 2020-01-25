@@ -1,8 +1,8 @@
-## pdftool
+# PdfTool
 
-PdfTool offers many filters to retrieve information and operate on PD files.    
+PdfTool offers many filters operate on PDF files.     
 
-# Filters
+## Filters
 
 * AddMargin : add a margin
 * AddMetadata : add metadata 
@@ -27,7 +27,7 @@ PdfTool offers many filters to retrieve information and operate on PD files.
 * SplitPage : spit each page of the PDF document
 * Transform : transform with a 2d trsnformation
 
-# Render objects
+## Render objects
 
 * BarCode : draw a barcode
 * Image : insert an image
@@ -38,21 +38,22 @@ PdfTool offers many filters to retrieve information and operate on PD files.
 * Text : some text
 * WaterMark.java : a watermark
 
-# Flow filter operators
+## Flow filter operators
 
 * GroupFilter.java : flow operator to group filters
 * Multiply.java : multiply the PDF flow (useful for impose filter)
 * SelectPage.java : a page selector to operate on specific pages
 
-# Top level objects
+## Top level objects
 
 * PdfTool : add and execute PDF filers  
 * PdfExtractor:  extract information from the PDF
 
-# Code sample 
+## Code sample 
 
-Create a simple PDF : 
-'''
+* Create a simple PDF : 
+
+```
         RenderFilter rf = new RenderFilter("10");
         rf.addRender(new Text("Hello World", 8 * MMf, -5 * MMf - 12f));
         rf.addRender(new Rectangle(5 * MMf, 5 * MMf, -5 * MMf, -5 * MMf));
@@ -63,11 +64,11 @@ Create a simple PDF :
         pdfTool.addFilter(new Create(ouputfile.getPath(), 210 * MMf, 210 * MMf, 2));
         pdfTool.addFilter(rf);
         pdfTool.execute();
-  '''
+```
  
-Impose a PDF file :
+* Impose a PDF file :
 
-'''
+```
 Impose impose = new Impose(TEST_RESULTS + "plate_{TEMP}.pdf", (20 + 216) * 2 * MMtoPT, (20 + 295) * MMtoPT, Impose.DIVIDE);
         impose.addPageSlot(new PageSlot(10 * MMtoPT, 10 * MMtoPT, true, 110 * MMtoPT, 309 * MMtoPT, "{FILENAME} - Page {FOLIO}", 10));
         impose.addPageSlot(new PageSlot(246 * MMtoPT, 10 * MMtoPT, true, 330 * MMtoPT, 309 * MMtoPT, "Page {FOLIO}", 10));
@@ -92,8 +93,8 @@ Impose impose = new Impose(TEST_RESULTS + "plate_{TEMP}.pdf", (20 + 216) * 2 * M
 
         File file1 = new File(TEST_RESOURCES + "julesverne.pdf");
         pdfTool.execute(file1);
-'''
+```
 
-# Licensing
+## Licensing
 
-PdfTool is based on iText and is licensed as AGPL. Il means it's free for non commercial use.
+PdfTool is based on iText and is licensed as AGPL. Il means it's free for non commercial use only.
