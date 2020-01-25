@@ -2,7 +2,7 @@
 
 PdfTool offers filters to operate on PDF files.
 
-## Filters
+### Filters
 
 * AddMargin : add a margin
 * AddMetadata : add metadata 
@@ -27,7 +27,7 @@ PdfTool offers filters to operate on PDF files.
 * SplitPage : spit each page of the PDF document
 * Transform : transform with a 2d trsnformation
 
-## Render objects
+### Render objects
 
 * BarCode : draw a barcode
 * Image : insert an image
@@ -38,18 +38,18 @@ PdfTool offers filters to operate on PDF files.
 * Text : some text
 * WaterMark.java : a watermark
 
-## Flow filter operators
+### Flow filter operators
 
 * GroupFilter.java : flow operator to group filters
 * Multiply.java : multiply the PDF flow (useful for impose filter)
 * SelectPage.java : a page selector to operate on specific pages
 
-## Top level objects
+### Top level objects
 
 * PdfTool : add and execute PDF filers  
 * PdfExtractor:  extract information from the PDF
 
-## Code sample 
+### Code sample 
 
 * Create a simple PDF : 
 
@@ -95,9 +95,9 @@ Impose impose = new Impose(TEST_RESULTS + "plate_{TEMP}.pdf", (20 + 216) * 2 * M
         pdfTool.execute(file1);
 ```
 
-## XML 
+### XML 
 
-The filters can be exported to an XML file. It's also possible to import an XML that contains the filters and to execute the operations. 
+The filters can be exported to XML. It's also possible to import the filters from an XML file and then execute the operations. 
 
 * XML sample :
 
@@ -127,6 +127,6 @@ The filters can be exported to an XML file. It's also possible to import an XML 
 </PdfTool>
 ```
 
-## Licensing
+### Licensing
 
 PdfTool is based on iText and is licensed as AGPL. Il means it's free for non commercial use only.
