@@ -146,6 +146,6 @@ Contributions are welcome.
 5. Create a pull request
 
 
-## Licensing
+## License
 
 PdfTool is based on iText and is licensed as AGPL. It means it's free for non commercial use only.
