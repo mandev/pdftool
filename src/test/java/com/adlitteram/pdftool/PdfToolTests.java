@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.adlitteram.pdftool;
 
 import com.adlitteram.pdftool.filters.AddMargin;
@@ -35,18 +30,42 @@ import com.adlitteram.pdftool.utils.NumUtils;
 import com.itextpdf.text.BaseColor;
 import java.io.File;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PdfToolTest {
+public class PdfToolTests {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PdfToolTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PdfToolTests.class);
 
     public static final String TEST_RESOURCES = "src/test/resources/";
     public static final String TEST_RESULTS = "/tmp/";
     public static final double MMd = 72 / 25.4d;
     public static final float MMf = (float) MMd;
 
+    public static String getMethod(TestInfo testInfo) {
+        return testInfo.getTestMethod().get().getName();
+    }
+
+    @BeforeEach
+    public void before(TestInfo testInfo) {
+        LOGGER.info("**************** Testing " + getMethod(testInfo));
+    }
+
+    @Test
+    public void testCreateBasicPdf() {
+        File ouputfile = new File(TEST_RESULTS + "testCreateBasic.pdf");
+        PdfTool pdfTool = new PdfTool();
+        pdfTool.addFilter(new Create(ouputfile.getPath(), 278 * NumUtils.MMtoPT, 375 * NumUtils.MMtoPT, 1));
+        pdfTool.execute();
+
+        Assertions.assertTrue(ouputfile.exists(), "Check if output exists");
+        Assertions.assertTrue(ouputfile.length() > 10, "Check if output is not empty");
+    }
+
+    @Test
     public void testRenderPdf() {
 
         File ouputfile = new File(TEST_RESULTS + "testRender.pdf");
@@ -68,6 +87,7 @@ public class PdfToolTest {
         Assertions.assertTrue(ouputfile.length() > 10, "Check if output is not empty");
     }
 
+    @Test
     public void testCreatePdf() {
         File ouputfile = new File(TEST_RESULTS + "testCreate.pdf");
 
@@ -87,6 +107,7 @@ public class PdfToolTest {
         Assertions.assertTrue(ouputfile.length() > 10, "Check if output is not empty");
     }
 
+    @Test
     public void testCropPdf() {
         File ouputfile1 = new File(TEST_RESULTS + "testCrop_left.pdf");
         File ouputfile2 = new File(TEST_RESULTS + "testCrop_right.pdf");
@@ -108,6 +129,7 @@ public class PdfToolTest {
         Assertions.assertTrue(ouputfile2.length() > 10, "Check if output is not empty");
     }
 
+    @Test
     public void testImposePdf() {
 
         Impose impose = new Impose(TEST_RESULTS + "plate_{TEMP}.pdf", (20 + 216) * 2 * NumUtils.MMtoPT, (20 + 295) * NumUtils.MMtoPT, Impose.DIVIDE);
@@ -140,6 +162,7 @@ public class PdfToolTest {
         PdfTool.createFromFile(file);
     }
 
+    @Test
     public void testCropImposeSplit() {
         PdfTool pdfTool = new PdfTool();
         pdfTool.addFilter(new AddMargin(TEST_RESULTS + "OUT-{BASE}_{COUNT}.{EXT}", 3 * 72 / 25.4f, 3 * 72 / 25.4f, 3 * 72 / 25.4f, 3 * 72 / 25.4f));
@@ -158,6 +181,7 @@ public class PdfToolTest {
         pdfTool.execute(file);
     }
 
+    @Test
     public void testConcatPdf() {
         File file = new File(TEST_RESOURCES);
         File[] files = file.listFiles((File dir, String name) -> name.toLowerCase().endsWith(".pdf"));

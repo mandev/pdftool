@@ -18,8 +18,9 @@ public abstract class AbstractPdfFilter implements PdfFilter {
 
     @Override
     public File[] filter(File[] srcFiles) {
+
         Set<File> outputFiles = new LinkedHashSet<>();
-        if (srcFiles == null) {
+        if (srcFiles == null || srcFiles.length == 0) {
             File[] files = filter((File) null);
             outputFiles.addAll(Arrays.asList(files));
         }
@@ -97,7 +98,6 @@ public abstract class AbstractPdfFilter implements PdfFilter {
                 }
 
                 file = File.createTempFile(fix[0], fix[1], dirFile);
-                System.err.println("File :" + file.getPath());
             }
             catch (IOException ex) {
                 ex.printStackTrace();
@@ -145,11 +145,9 @@ public abstract class AbstractPdfFilter implements PdfFilter {
     }
 
     /**
-     * Select a range of pages. The syntax is: [!][o][odd][e][even]start-end You
-     * can have multiple ranges separated by commas ','. The '!' modifier
-     * removes the range from what is already selected. The range changes are
-     * incremental, that is, numbers are added or deleted as the range appears.
-     * The start or the end, but not both, can be omitted.
+     * Select a range of pages. The syntax is: [!][o][odd][e][even]start-end You can have multiple ranges separated by
+     * commas ','. The '!' modifier removes the range from what is already selected. The range changes are incremental,
+     * that is, numbers are added or deleted as the range appears. The start or the end, but not both, can be omitted.
      *
      * @param pattern
      * @param pages

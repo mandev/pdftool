@@ -1,8 +1,8 @@
 # PdfTool
 
-PdfTool offers filters to operate on PDF files.
+PdfTool is a Java library that offers filters to handle PDF files.
 
-### Filters
+## Filters
 
 * AddMargin : add a margin
 * AddMetadata : add metadata 
@@ -27,7 +27,7 @@ PdfTool offers filters to operate on PDF files.
 * SplitPage : spit each page of the PDF document
 * Transform : transform with a 2d trsnformation
 
-### Render objects
+## Render objects
 
 * BarCode : draw a barcode
 * Image : insert an image
@@ -38,64 +38,64 @@ PdfTool offers filters to operate on PDF files.
 * Text : some text
 * WaterMark.java : a watermark
 
-### Flow filter operators
+## Flow filter operators
 
 * GroupFilter.java : flow operator to group filters
 * Multiply.java : multiply the PDF flow (useful for impose filter)
 * SelectPage.java : a page selector to operate on specific pages
 
-### Top level objects
+## Top level objects
 
 * PdfTool : add and execute PDF filers  
 * PdfExtractor:  extract information from the PDF
 
-### Code sample 
+## Code sample 
 
 * Create a simple PDF : 
 
 ```
-        RenderFilter rf = new RenderFilter("10");
-        rf.addRender(new Text("Hello World", 8 * MMf, -5 * MMf - 12f));
-        rf.addRender(new Rectangle(5 * MMf, 5 * MMf, -5 * MMf, -5 * MMf));
-        rf.addRender(new BarCode("14567890111", 78 * MMf, 10 * MMf, 1f, 1f, 90, BarCode.ALIGN_CENTER));
-        rf.addRender(new Image(TEST_RESOURCES + "image.jpg", 10 * MMf, 10 * MMf, 0, 0, 1, BaseColor.CYAN));
+RenderFilter rf = new RenderFilter("10");
+rf.addRender(new Text("Hello World", 8 * MMf, -5 * MMf - 12f));
+rf.addRender(new Rectangle(5 * MMf, 5 * MMf, -5 * MMf, -5 * MMf));
+rf.addRender(new BarCode("14567890111", 78 * MMf, 10 * MMf, 1f, 1f, 90, BarCode.ALIGN_CENTER));
+rf.addRender(new Image(TEST_RESOURCES + "image.jpg", 10 * MMf, 10 * MMf, 0, 0, 1, BaseColor.CYAN));
 
-        PdfTool pdfTool = new PdfTool();
-        pdfTool.addFilter(new Create(ouputfile.getPath(), 210 * MMf, 210 * MMf, 2));
-        pdfTool.addFilter(rf);
-        pdfTool.execute();
+PdfTool pdfTool = new PdfTool();
+pdfTool.addFilter(new Create(ouputfile.getPath(), 210 * MMf, 210 * MMf, 2));
+pdfTool.addFilter(rf);
+pdfTool.execute();
 ```
  
 * Impose a PDF file :
 
 ```
 Impose impose = new Impose(TEST_RESULTS + "plate_{TEMP}.pdf", (20 + 216) * 2 * MMtoPT, (20 + 295) * MMtoPT, Impose.DIVIDE);
-        impose.addPageSlot(new PageSlot(10 * MMtoPT, 10 * MMtoPT, true, 110 * MMtoPT, 309 * MMtoPT, "{FILENAME} - Page {FOLIO}", 10));
-        impose.addPageSlot(new PageSlot(246 * MMtoPT, 10 * MMtoPT, true, 330 * MMtoPT, 309 * MMtoPT, "Page {FOLIO}", 10));
-        impose.addPageMark(new PageMark(3 * MMtoPT, 3 * MMtoPT, 5 * MMtoPT, 5 * MMtoPT, "++||"));
-        impose.addPageMark(new PageMark(3 * MMtoPT, 3 * MMtoPT, 5 * MMtoPT, 5 * MMtoPT, "||++"));
-        impose.setDeleteSource(true);
+impose.addPageSlot(new PageSlot(10 * MMtoPT, 10 * MMtoPT, true, 110 * MMtoPT, 309 * MMtoPT, "{FILENAME} - Page {FOLIO}", 10));
+impose.addPageSlot(new PageSlot(246 * MMtoPT, 10 * MMtoPT, true, 330 * MMtoPT, 309 * MMtoPT, "Page {FOLIO}", 10));
+impose.addPageMark(new PageMark(3 * MMtoPT, 3 * MMtoPT, 5 * MMtoPT, 5 * MMtoPT, "++||"));
+impose.addPageMark(new PageMark(3 * MMtoPT, 3 * MMtoPT, 5 * MMtoPT, 5 * MMtoPT, "||++"));
+impose.setDeleteSource(true);
 
-        GroupFilter group1 = new GroupFilter();
-        group1.addFilter(new InsertPage(TEST_RESULTS + "page_{TEMP}.tmp", 1, 1));
-        group1.addFilter(new DuplicatePage(TEST_RESULTS + "plate_{TEMP}.tmp", "2-", 5));
-        group1.addFilter(new Multiply(2));
-        group1.addFilter(impose);
+GroupFilter group1 = new GroupFilter();
+group1.addFilter(new InsertPage(TEST_RESULTS + "page_{TEMP}.tmp", 1, 1));
+group1.addFilter(new DuplicatePage(TEST_RESULTS + "plate_{TEMP}.tmp", "2-", 5));
+group1.addFilter(new Multiply(2));
+group1.addFilter(impose);
 
-        GroupFilter group2 = new GroupFilter(3);
-        group2.addFilter(new RemovePage(TEST_RESULTS + "page_{TEMP}.tmp", "1")); // SRA3 : 450x320 mm
-        group2.addFilter(new Multiply(2));
-        group2.addFilter(impose);
+GroupFilter group2 = new GroupFilter(3);
+group2.addFilter(new RemovePage(TEST_RESULTS + "page_{TEMP}.tmp", "1")); // SRA3 : 450x320 mm
+group2.addFilter(new Multiply(2));
+group2.addFilter(impose);
 
-        PdfTool pdfTool = new PdfTool();
-        pdfTool.addFilter(group1);
-        pdfTool.addFilter(group2);
+PdfTool pdfTool = new PdfTool();
+pdfTool.addFilter(group1);
+pdfTool.addFilter(group2);
 
-        File file1 = new File(TEST_RESOURCES + "julesverne.pdf");
-        pdfTool.execute(file1);
+File file1 = new File(TEST_RESOURCES + "julesverne.pdf");
+pdfTool.execute(file1);
 ```
 
-### XML 
+## XML 
 
 The filters can be exported to XML. It's also possible to import the filters from an XML file and then execute the operations. 
 
@@ -127,6 +127,25 @@ The filters can be exported to XML. It's also possible to import the filters fro
 </PdfTool>
 ```
 
-### Licensing
+## Build 
+ 
+Java 8+ is mandatory to build emailcruncher.
 
-PdfTool is based on iText and is licensed as AGPL. Il means it's free for non commercial use only.
+```
+mvn clean install
+```
+
+## Contribute
+
+Contributions are welcome.
+
+1. Fork the project on Github (git clone ...)
+2. Create a local feature branch (git checkout -b newFeature)
+3. Commit modifications on the local feature branch (git commit -am "new modification")
+4. Push the local branch (git push origin newFeature)
+5. Create a pull request
+
+
+## Licensing
+
+PdfTool is based on iText and is licensed as AGPL. It means it's free for non commercial use only.

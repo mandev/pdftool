@@ -73,9 +73,7 @@ public class Concat extends AbstractPdfFilter {
             File tmpFile = getTmpFile(inputFiles[0], outputFile);
             fos = new FileOutputStream(tmpFile);
 
-            System.err.println("outputFile: " + outputFile.getPath());
             for (File inputFile : inputFiles) {
-                System.err.println("inputFile: " + inputFile.getPath());
                 reader = new PdfReader(inputFile.getPath());
                 int np = reader.getNumberOfPages();
                 if (np > 0 && writer == null) {

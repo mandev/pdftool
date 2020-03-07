@@ -2,7 +2,6 @@ package com.adlitteram.pdftool.filters;
 
 import com.adlitteram.pdftool.xml.XMLTools;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,9 +20,6 @@ public class PdfTool {
     public static PdfTool createFromFile(File file) {
         try {
             return (PdfTool) XMLTools.decodeFromFile(file);
-        }
-        catch (FileNotFoundException ex) {
-            ex.printStackTrace();
         }
         catch (IOException ex) {
             ex.printStackTrace();
